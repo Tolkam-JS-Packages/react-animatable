@@ -18,7 +18,7 @@ export default class Animatable extends PureComponent<Props, State> {
      */
     public static defaultProps: Props = {
         show: false,
-        classPrefix: 'animatable',
+        classPrefix: 'anm',
     };
 
     /**
