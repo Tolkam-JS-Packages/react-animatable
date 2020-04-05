@@ -79,7 +79,7 @@ export default class Animatable extends PureComponent<Props, State> {
         const currentPhaseClass = classPrefix + '-' + phase.toLowerCase();
         const phaseGroupClass = {};
         phaseGroupClass[classPrefix + '-is-enter'] = [ENTERING, ENTERED].indexOf(phase) >= 0;
-        phaseGroupClass[classPrefix + '-is-exit'] = [EXITING, EXITED].indexOf(phase) >= 0;
+        phaseGroupClass[classPrefix + '-is-exit'] = [EXITING, EXITED, COMPLETED].indexOf(phase) >= 0;
 
         if (phase === COMPLETED && !keepMounted) {
             return null;
