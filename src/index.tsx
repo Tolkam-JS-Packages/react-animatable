@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PureComponent, cloneElement, Children } from 'react';
+import { PureComponent, cloneElement, Children, ReactElement } from 'react';
 import { classNames } from '@tolkam/lib-utils-ui';
 import { getLongestDuration } from '@tolkam/lib-css-events';
 
@@ -10,13 +10,13 @@ const EXITING   = 'EXITING';
 const EXITED    = 'EXITED';
 const COMPLETED = 'COMPLETED';
 
-export default class Animatable extends PureComponent<Props, State> {
+export default class Animatable extends PureComponent<IProps, IState> {
 
     /**
      * Default props
-     * @type Props
+     * @type IProps
      */
-    public static defaultProps: Props = {
+    public static defaultProps: IProps = {
         show: false,
         classPrefix: 'anm',
     };
@@ -34,10 +34,10 @@ export default class Animatable extends PureComponent<Props, State> {
     protected timeoutId: number;
 
     /**
-     * @param  {Props}  props
+     * @param  {IProps}  props
      * @return {void}
      */
-    constructor(props: Props) {
+    constructor(props: IProps) {
         super(props);
 
         this.state = {
@@ -45,6 +45,9 @@ export default class Animatable extends PureComponent<Props, State> {
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     public componentDidMount() {
         const props = this.props;
 
@@ -58,7 +61,10 @@ export default class Animatable extends PureComponent<Props, State> {
         }
     }
 
-    public componentDidUpdate(prevProps: Props) {
+    /**
+     * @inheritDoc
+     */
+    public componentDidUpdate(prevProps: IProps) {
         const show = this.props.show;
         const prevShow = prevProps.show;
 
@@ -67,15 +73,21 @@ export default class Animatable extends PureComponent<Props, State> {
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     public componentWillUnmount() {
         clearTimeout(this.timeoutId);
     }
 
+    /**
+     * @inheritDoc
+     */
     public render() {
         const that = this;
         const phase = that.state.phase;
         const { children, className, classPrefix, keepMounted } = that.props;
-        const child = Children.only(children);
+        const child = Children.only(children) as ReactElement;
         const currentPhaseClass = classPrefix + '-' + phase.toLowerCase();
         const phaseGroupClass = {};
         phaseGroupClass[classPrefix + '-is-enter'] = [ENTERING, ENTERED].indexOf(phase) >= 0;
@@ -175,25 +187,25 @@ export default class Animatable extends PureComponent<Props, State> {
     }
 }
 
-interface Props extends React.HTMLProps<Animatable> {
-    show: boolean,
-    animateAppear?: boolean,
+interface IProps extends React.HTMLProps<Animatable> {
+    show: boolean;
+    animateAppear?: boolean;
 
     // keep element mounted on completed phase
-    keepMounted?: boolean,
+    keepMounted?: boolean;
 
     // phases classes prefix
-    classPrefix?: string,
+    classPrefix?: string;
 
     // phase callbacks
-    onMounted?: Function,
-    onEntering?: Function,
-    onEntered?: Function,
-    onExiting?: Function,
-    onExited?: Function,
-    onCompleted?: Function,
+    onMounted?: () => void;
+    onEntering?: () => void;
+    onEntered?: () => void;
+    onExiting?: () => void;
+    onExited?: () => void;
+    onCompleted?: () => void;
 }
 
-interface State {
-    phase: string,
+interface IState {
+    phase: string;
 }
