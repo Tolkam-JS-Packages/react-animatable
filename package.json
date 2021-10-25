@@ -1,14 +1,12 @@
 {
     "name": "@tolkam/react-animatable",
-    "version": "1.0.0",
     "description": "Component that mounts/unmounts its children depending on CSS animation/transition duration",
     "main": "src/index.tsx",
     "license": "UNLICENSED",
-    "private": true,
     "dependencies": {
         "react": "^16.5",
-        "@tolkam/lib-utils-ui": "file:D:/dev-packages/js/tolkam/lib-utils-ui",
-        "@tolkam/lib-css-events": "file:D:/dev-packages/js/tolkam/lib-css-events"
+        "@tolkam/lib-utils-ui": "0.1.0",
+        "@tolkam/lib-css-events": "1.0.0"
     },
     "devDependencies": {
         "tslib": "^1.9.3",
