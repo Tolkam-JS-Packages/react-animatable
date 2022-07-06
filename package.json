@@ -4,12 +4,12 @@
     "main": "src/index.tsx",
     "license": "UNLICENSED",
     "dependencies": {
-        "react": "^16.5",
-        "@tolkam/lib-utils-ui": "0.1.0",
+        "react": "^18",
+        "@tolkam/lib-utils-ui": "0.2.0",
         "@tolkam/lib-css-events": "1.0.0"
     },
     "devDependencies": {
-        "tslib": "^1.9.3",
-        "@types/react": "^16.4"
+        "tslib": "^2.4.0",
+        "@types/react": "^18"
     }
 }
