@@ -1,6 +1,7 @@
 {
     "name": "@tolkam/react-animatable",
     "description": "Component that mounts/unmounts its children depending on CSS animation/transition duration",
+    "version": "0.0.0",
     "main": "src/index.tsx",
     "license": "UNLICENSED",
     "dependencies": {
